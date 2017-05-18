@@ -1,0 +1,160 @@
+ In magento, when is order refunded?
+
+    When items are not fully refunded
+    When total order is greater than 0
+    When there is a item which is invoiced but not refunded d.
+    B and C
+	
+	
+	 Discount "To fixed Ammount" 10$ means:
+
+    Discount $10
+    The product is sold at $10
+    The minimum price is $10
+    None of the above is correct
+	
+	 To update button available on the system's form as buton Back, Save, Save and Continue Delete ... then we use the following way:
+
+    _setButton ('name_button');
+    _changeButton ('' name_button ');
+    _updateButton ('name_button');
+    All are correct
+	
+	 To delete button is available on the system's form as buton Back, Save, Save and Continue Delete ... then we use the following way:
+
+    _removeButton ('name_button');
+    _deleteButton ('' name_button ');
+    _dropButton ('name_button');
+    All are correct
+	
+	 To display formatted like the following example: "Aug 30, 2013" , choose the date of the following format:
+
+    Mage_Core_Model_Locale :: FORMAT_TYPE_MEDIUM
+    Mage_Core_Model_Locale :: FORMAT_TYPE_SHORT
+    Mage_Core_Model_Locale :: FORMAT_TYPE_LONG
+    Mage_Core_Model_Locale :: FORMAT_TYPE_FULL
+	
+	 Assume that PayPal has presented a new API for online purchasing that you are going to use.
+Which class should you extend for doing that?
+
+    Mage_Sales_Model_Quote_Payment
+    Mage_Payment_Model_lnfo
+    Mage_Payment_Model_Method_Abstract
+    Mage_Sales_Model_Order_Payment
+	
+	 When seting up class of Mage_Sales_Model_Mysql4_Setup, which of the following will correctly add an attribute to the sales/order entity?
+
+    $installer->addAttribute('sales_order_entity', 'foo', array('type' => 'int'));
+    $installer->addAttribute('sales/order', 'foo', array('type' => 'int'));
+    $installer->addAttribute('order', 'foo', array('type' => 'int'));
+    $installer->addAttribute('sales_flat_order', 'foo', array('type' => 'int'));
+	
+	
+	 Which element below has effect on Tax and price of product when customer checkout? (1 answer is correct)
+
+ 
+
+    Customer name and email
+    Customer billing address
+    Customer shipping address
+    Customer Group
+	
+	 The differences between the two following methods:
+
+Mage::getStoreConfig() and Mage::getStoreConfigFlag() are:
+
+    Mage::getStoreConfigFlag() is used for conditional statement when we find the system value in Magento
+    Method Mage::getStoreConfigFlag() will get config data from database. By contrast, Mage:: getStoreConfig() will get data from both files config.xml and database
+    Method Mage::getStoreConfig() gets config data in raw format. However, Mage::getStoreConfigFlag() gets config data in Boolean format
+    Method Mage::getStoreConfigFlag() is used to check depends condition in layout and config menu, but Mage::getStoreConfig() is not
+    Method Mage::getStoreConfig() gets data from data base first, then get from file config.xml, However Mage::getStoreConfigFlag() does in opposite order.
+	
+	
+	 To creat a mass action for grid in backend in Magento, what we need to do?
+
+    Add mass action item in method _prepareMassaction of Thêmmassaction item trongphươngthức_prepareMassaction of the corresponding model grid.
+    Add mass action item in method_prepareMassaction of the corresponding block grid.
+    Add admin html controller/action to execute the corresponding action which is declared in method_prepare Massaction.
+    Declare massaction in file xml layout of the module
+	
+	 In the module Magestore_GiftCard, what is the return value of  Mage::getModel('giftcard/code' ( 1 answer)
+
+    Return a line in database of giftcard table : giftcard_code
+    Return an object of class Magestore_GiftCard_Model_Code
+    Return a data array of module Magestore_GiftCard
+    Return the class Magestore_GiftCard_Model_Code
+	
+	 What elements are necessary to create API (SOAP) in Magento (2 answers)
+
+    controller
+    Model
+    Helper
+    etc/api.xml
+    Resource Model
+	
+	 Which functions are required to be declared when creating a Shipping carrier model? (2 answers):
+
+    get Allowed Methods
+    is Tracking Available
+    is Active
+    collect Rates
+    get Method Price
+	
+	 Which product types implement a parent-child relationship between product entities?(choose 3)
+
+    Configurable
+    Simple
+    Grouped
+    Bundle
+    Virtual
+    Downloadable
+	
+	 Which methods to get magento table name?(Choose 2)
+
+    Mage_Core_Model_Resource::getTableName()
+    Mage_Core_Model_Resource::getTable()
+    Mage_Core_Model_Mysql4_Abstract::getTableName()
+    Mage_Core_Model_Mysql4_Abstract::getTable()
+	
+	 How to set order for a magento collection?(Choose 2)
+
+    $coll->getSelect()->order(‘entity_id desc’);
+    $coll->setOrder(‘entity_id’,'desc’);
+    $coll->setOrder(‘entity_id desc’);
+    $coll->getSelect()->order(‘entity_id’,’desc’);
+	
+	
+	 How to get attribute value from attribute code of product? (choose some)
+
+    $attribute_value = $product->getAttributeText($attribute_code);
+    $attribute_value = Mage::getResourceModel('catalog/product')->getAttributeRawValue($product_id, $attribute_code, $store_id);
+    $attribute_value = $product->getAttributeValue($attribute_code);
+    $attribute_value = $product->getResource()->getAttribute($attribute_code)->getFrontend()->getValue($product);
+	
+	07:28
+
+How to get current url with and without parameters?
+A. $currentUrl = $this->helper('core/url')->getCurrentUrl();
+ 
+B. $currentUrl = $this->getBaseUrl();
+ 
+C. $request = $this->getRequest();
+     $currentUrl = $this->getBaseUrl() . $request->getRouteName() .DS.$request->getControllerName() .DS. $request->getActionName();
+ 
+D. $ currentUrl = Mage::getBaseUrl(array(‘params’=>false))
+
+
+ Which table to store the relationship data between configurable product and it’s simple product?
+
+    catalog_product_relation table
+    catalog_product_superlink table
+    Both table catalog_product_superlink and catalog_product_relation
+    Catalog_product_link table
+	
+	
+	 How to get product collection which IDs are in array(16,17,18,20) ?
+
+    $collection->addFieldToFilter(‘entity_id’=>array(‘in’=>array(16,17,18,19)))
+    $collection->addFieldToFilter(‘id’, array(16,17,18,19));
+    $collection->addFieldToFilter(‘entity_id’=>array(‘gt’=>16,’lt’=>’19’))
+    $collection->addIdToFilter(array(16,17,18,19));

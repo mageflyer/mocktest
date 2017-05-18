@@ -80,3 +80,9 @@ Router::scope('/', function (RouteBuilder $routes) {
  * how to customize the loading of plugin routes.
  */
 Plugin::routes();
+/* Added to implement admin */
+Router::prefix('admin', function($routes) 
+	{
+		$routes->connect('/', ['controller'=>'Users','action'=>'login']);
+		$routes->fallbacks('InflectedRoute');
+	});
