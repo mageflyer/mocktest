@@ -33,7 +33,7 @@
 							<td><?php echo h(date('d/m/Y h:i:s',strtotime($question->updated_at))) ?></td>
 							<td class="actions">
 							
-							<?php echo $this->Html->link(__('<i class="fa fa-fw fa-eye"></i>'), ['action' => 'view', $question->q_id],array('escape' => false,'title'=>'View')) ?>
+							<?php echo $this->Html->link(__('<i class="fa fa-fw fa-eye" data-toggle="modal" data-target="#myModal"></i>'), ['action' => 'view', $question->q_id],array('escape' => false,'title'=>'View')) ?>
 							
 							<?php echo $this->Html->link(__('<i class="fa fa-fw fa-edit"></i>'), 
 							['action' => 'edit', $question->q_id],array('escape' => false,'title'=>'Edit')) ?>
@@ -41,7 +41,12 @@
 							<?php echo $this->Form->postLink('<i class="fa fa-fw fa-remove"></i>', ['action' => 'delete', $question->q_id], ['confirm' => __('Are you sure you want to delete # {0}?', $question->q_id),
 							'escape' => false,'title'=>'Remove']) ?>
 							
-							<?php echo $this->Html->link(__('Add Options'), ['action' => 'edit', $question->q_id]) ?>
+							<?php echo $this->Html->link('Add Options',[
+															'controller'=>'options',
+															'action' => 'add','?' => [
+																		'c_id' => $question->c_id, 
+																		'q_id' => $question->q_id]
+																	]); ?>
 							</td>
 						</tr>
 						<?php endforeach; ?>
@@ -72,4 +77,22 @@
 			</ul>
 			<p><?php echo $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
 		</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -80,4 +80,22 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
+	public function beforeFilter(Event $event) {
+		// if admin url requested
+		
+		if(isset($this->request->params['prefix']) && $this->request->params['prefix']=='admin') {
+			if($this->Auth->User('id'))
+			{
+				$this->viewBuilder()->setLayout('admin') ;
+			}
+			else
+			{
+				$this->viewBuilder()->setLayout('admin_login') ;
+			}
+			
+			//echo '<pre>';
+			
+			
+		}
+	}
 }

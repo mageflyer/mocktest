@@ -113,11 +113,14 @@ class UsersController extends AppController
 	/* Login method*/
 	public function login() 
 	{
+		
+		//$this->viewBuilder()->setLayout('admin_login') ;
 		if ($this->request->is('post')) 
 		{
 			$user = $this->Auth->identify();
 			if ($user) {
 				$this->Auth->setUser($user);
+				$this->Flash->success(__('Welcome, you have successfully logged in'));
 				return $this->redirect($this->Auth->redirectUrl());
 			}
 			$this->Flash->error(__('Your username or password was incorrect.'));
