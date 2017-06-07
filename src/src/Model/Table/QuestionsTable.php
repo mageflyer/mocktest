@@ -42,6 +42,9 @@ class QuestionsTable extends Table
             'foreignKey' => 'c_id',
             'joinType' => 'INNER'
         ]);
+		$this->hasMany('Options', [
+            'foreignKey' => 'q_id'
+        ]);
         
     }
 

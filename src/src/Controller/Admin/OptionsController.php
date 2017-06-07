@@ -18,11 +18,21 @@ class OptionsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
+    public function index($q_id=null)
     {
-        $this->paginate = [
-            'contain' => ['Courses', 'Questions']
-        ];
+		$q_id	= $this->request->query('q_id');
+		if($q_id)
+		{
+			$customFinderOptions = [ 'q_id' => $q_id ];
+			$this->paginate = [	'finder' => [
+												'ownedBy' => $customFinderOptions
+											],
+								'contain' => ['Courses', 'Questions']
+							];
+		}
+        
+
+		
         $options = $this->paginate($this->Options);
 
         $this->set(compact('options'));
@@ -68,7 +78,7 @@ class OptionsController extends AppController
 			if ($this->Options->saveMany($option)) 
 			{
 				$this->Flash->success(__('The option has been saved.'));
-				return $this->redirect(['action' => 'index']);
+				return $this->redirect(['controller'=>'questions','action' => 'index']);
 			}
 			$this->Flash->error(__('The option could not be saved. Please, try again.'));
         }
@@ -77,7 +87,35 @@ class OptionsController extends AppController
         $this->set(compact('option', 'qs', 'cs'));
         $this->set('_serialize', ['option']);
     }
-
+	
+	public function correct($q_id=null)
+    {
+		$q_id	= $this->request->query('q_id');
+		$this->loadModel('Questions');
+		$qs = $this->Questions->get($q_id,array( 'contain' => ['Options']
+        ));
+        
+		if ($this->request->is('put')) 
+		{
+			$postData	=	$this->request->getData();
+			$correct_option_id	=	array_keys($postData['answer'], 1);
+			$qs['correct_option_id'] = implode(',',$correct_option_id);
+			
+			//pr($data);die;
+			if ($this->Questions->save($qs)) 
+			{
+				$this->Flash->success(__('The answer has been saved.'));
+				return $this->redirect(['controller'=>'questions','action' => 'index']);
+			}
+			$this->Flash->error(__('The option could not be saved. Please, try again.'));
+        }
+		
+		$qs = $this->Questions->get($q_id,array( 'contain' => ['Options']
+        ));
+       $this->set(compact('qs'));
+       
+        
+    }
     /**
      * Edit method
      *

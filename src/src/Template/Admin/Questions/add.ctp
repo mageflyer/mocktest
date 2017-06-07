@@ -8,7 +8,7 @@
 		<div class="box-header with-border">
 			<h3 class="box-title">Question Form</h3>
 		</div>
-		<?php echo $this->Form->create($question,array('class'=>'form-horizontal')) ?>
+		<?php echo $this->Form->create($question,array('class'=>'form-horizontal', 'enctype' => 'multipart/form-data')) ?>
 		<div class="box-body">
 			<div class="form-group">
 				<?php echo  $this->Form->input('c_id', array(
@@ -35,6 +35,20 @@
 							
 							)));?>
 			</div>
+			<div class="form-group">
+				<?php echo $this->Form->control('image', 
+						array(	'type' => 'file',
+								'required' => false,
+								'label'=>array('class'=>'col-sm-2 control-label'),
+								'placeholder'=>"Question title",'class'=>'',
+								'templates' => array(
+									'inputContainer' => '<div class="{{type}}{{required}}">{{content}}</div>',
+									'formGroup' => '{{label}}<div class="col-sm-10 {{type}}{{required}}">{{input}}</div>'
+							
+							)));?>
+				<?php //echo $this->Form->input('image', array('type' => 'file')); ?>
+			</div>
+			
 			<div class="form-group">
 				<?php echo $this->Form->input('status', array( 
 								'required' => false,

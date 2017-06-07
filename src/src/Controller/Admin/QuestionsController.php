@@ -2,7 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
-
+use Cake\Utility\Text;
 /**
  * Questions Controller
  *
@@ -20,11 +20,22 @@ class QuestionsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Courses']
-        ];
+		$search_term	= $this->request->query('title');
+		$this->paginate= ['contain' => ['Courses'] ];
+		if($search_term!='')
+		{
+			$this->paginate['conditions']=array('Questions.title Like' =>'%'.$search_term.'%');
+		}
+		
+		/*$this->paginate = [
+            'contain' => ['Courses'],
+			'conditions'=>array('Questions.title Like' =>'%'.$search_term.'%')
+        ];*/
+		
+		//echo '<pre>';
+		//print_r($this->paginate);die;
         $questions = $this->paginate($this->Questions);
-		$this->set(compact('questions','course'));
+		$this->set(compact('questions','course','search_term'));
         $this->set('_serialize', ['questions']);
     }
 
@@ -37,8 +48,13 @@ class QuestionsController extends AppController
      */
     public function view($id = null)
     {
+		if($this->request->is('ajax'))
+		{
+			$this->viewBuilder()->setLayout('ajax') ;
+		}
+		
         $question = $this->Questions->get($id, [
-            'contain' => ['Courses']
+            'contain' => ['Courses','Options']
         ]);
 
         $this->set('question', $question);

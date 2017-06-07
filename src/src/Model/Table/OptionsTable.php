@@ -96,4 +96,8 @@ class OptionsTable extends Table
 		$entity->modified_at = date('Y-m-d H:i:s');
 		return true;
 	}
+	public function findOwnedBy(Query $query, array $options)
+    {
+		return $query->where(['Questions.q_id' => $options['q_id']]);
+    }
 }
